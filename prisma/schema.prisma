@@ -1,0 +1,213 @@
+// Generated schema — modeled after beautyhqio conventions.
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  role         Role     @default(ANALYST)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  ANALYST
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  actorId   String?
+  actorName String?
+  action    String
+  entity    String
+  entityId  String?
+  detail    String?
+  createdAt DateTime @default(now())
+}
+
+model Repository {
+  id        String   @id @default(cuid())
+  name String
+  org String
+  language String
+  contributors Int
+  status String
+  defaultBranch String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  pullRequests PullRequest[]
+  reviewCycles ReviewCycle[]
+  defectRecords DefectRecord[]
+  agentSessions AgentSession[]
+  tokenUsages TokenUsage[]
+  cycleTimeMetrics CycleTimeMetric[]
+  spendReports SpendReport[]
+  agentAnomalys AgentAnomaly[]
+  engineerProfiles EngineerProfile[]
+  qualityGates QualityGate[]
+  spendAlerts SpendAlert[]
+}
+
+model PullRequest {
+  id        String   @id @default(cuid())
+  number String
+  author String
+  title String
+  status String
+  commentsCount Int
+  cycleHours Float
+  repoId String?
+  repo Repository? @relation(fields: [repoId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ReviewCycle {
+  id        String   @id @default(cuid())
+  prRef String
+  reviewer String
+  round Int
+  hoursToReview Float
+  outcome String
+  reviewedAt DateTime?
+  repoId String?
+  repo Repository? @relation(fields: [repoId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model DefectRecord {
+  id        String   @id @default(cuid())
+  key String
+  severity String
+  origin String
+  status String
+  fixHours Float
+  closedAt DateTime?
+  repoId String?
+  repo Repository? @relation(fields: [repoId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AgentSession {
+  id        String   @id @default(cuid())
+  agent String
+  engineer String
+  task String
+  tokensUsed Float
+  cost Float
+  status String
+  repoId String?
+  repo Repository? @relation(fields: [repoId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model TokenUsage {
+  id        String   @id @default(cuid())
+  model String
+  workflow String
+  inputTokens Float
+  outputTokens Float
+  costUsd Float
+  periodStart DateTime?
+  repoId String?
+  repo Repository? @relation(fields: [repoId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CycleTimeMetric {
+  id        String   @id @default(cuid())
+  period String
+  stage String
+  medianHours Float
+  p90Hours Float
+  trend String
+  status String
+  repoId String?
+  repo Repository? @relation(fields: [repoId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SpendReport {
+  id        String   @id @default(cuid())
+  period String
+  aiSpend Float
+  engineerHoursCost Float
+  valueShipped Float
+  status String
+  generatedBy String
+  repoId String?
+  repo Repository? @relation(fields: [repoId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AgentAnomaly {
+  id        String   @id @default(cuid())
+  pattern String
+  detection String
+  severity String
+  wastedCost Float
+  status String
+  engineer String
+  repoId String?
+  repo Repository? @relation(fields: [repoId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model EngineerProfile {
+  id        String   @id @default(cuid())
+  name String
+  team String
+  level String
+  aiSpend30d Float
+  prsMerged30d Float
+  status String
+  repoId String?
+  repo Repository? @relation(fields: [repoId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model QualityGate {
+  id        String   @id @default(cuid())
+  name String
+  metric String
+  threshold Float
+  result String
+  status String
+  evaluatedAt DateTime?
+  repoId String?
+  repo Repository? @relation(fields: [repoId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SpendAlert {
+  id        String   @id @default(cuid())
+  scope String
+  message String
+  amountUsd Float
+  severity String
+  status String
+  raisedAt DateTime?
+  repoId String?
+  repo Repository? @relation(fields: [repoId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
