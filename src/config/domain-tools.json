@@ -1,0 +1,35 @@
+[
+  {
+    "id": "delivery",
+    "title": "Delivery measures",
+    "description": "Calculate actual delivery duration, throughput and rework from supplied item timestamps.",
+    "example": {
+      "periodDays": 7,
+      "items": [
+        {
+          "id": "PR-1",
+          "startedAt": "2026-09-01T10:00:00Z",
+          "deliveredAt": "2026-09-02T10:00:00Z",
+          "reworkHours": 2
+        }
+      ]
+    }
+  },
+  {
+    "id": "token-cost",
+    "title": "Agent token accounting",
+    "description": "Calculate token charges using explicit rates and expose sessions without a recorded merged output.",
+    "example": {
+      "sessions": [
+        {
+          "id": "session-1",
+          "inputTokens": 100000,
+          "outputTokens": 10000,
+          "inputUsdPerMillion": 1,
+          "outputUsdPerMillion": 5,
+          "mergedOutput": true
+        }
+      ]
+    }
+  }
+]

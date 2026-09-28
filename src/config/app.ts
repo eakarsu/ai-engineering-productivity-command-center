@@ -124,21 +124,21 @@ export const entities: Record<string, EntityConfig> = {
 export const workflows: WorkflowConfig[] = [
   {
     slug: "flow-brief",
-    title: "Flow Briefing",
+    title: "Draft: Flow Briefing",
     description: "Weekly flow summary for engineering leadership.",
     prompt: "You are a delivery metrics analyst. Summarize PR throughput, review latency, defects, and cycle-time trends for the week; flag regressions.",
     fields: ["repo", "period", "prStats", "defectStats"],
   },
   {
     slug: "agent-audit",
-    title: "Agent Usage Auditor",
+    title: "Draft: Agent Usage Auditor",
     description: "Detect expensive or ineffective agent usage.",
     prompt: "You are an AI-platform efficiency analyst. Identify wasteful agent sessions: high token cost with no merged output, thrash patterns, or prompt-injection risk.",
     fields: ["agentStats", "sessionsSummary", "outcomes", "budget"],
   },
   {
     slug: "roi-compare",
-    title: "AI ROI Comparator",
+    title: "Draft: AI ROI Comparator",
     description: "Compare AI spend against engineering delivery value.",
     prompt: "You are an engineering economics analyst. Compare monthly AI spend to delivered engineering hours and outcome value; recommend budget adjustments.",
     fields: ["aiSpend", "engineerHours", "deliveryValue", "trend"],

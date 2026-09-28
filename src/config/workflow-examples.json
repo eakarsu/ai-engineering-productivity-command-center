@@ -1,0 +1,98 @@
+{
+  "flow-brief": [
+    {
+      "id": "example-1",
+      "label": "Stable delivery",
+      "values": {
+        "repo": "example-org/example-service",
+        "period": "2026-08",
+        "prStats": "Fictional: 30 merged PRs; median cycle 24h; consistent item definition assumed.",
+        "defectStats": "Fictional: 3 escaped defects; denominator and severity mix need review."
+      }
+    },
+    {
+      "id": "example-2",
+      "label": "Rework increase",
+      "values": {
+        "repo": "example-org/example-web",
+        "period": "2026 Q3",
+        "prStats": "Fictional: 80 merged PRs; median review wait 18h.",
+        "defectStats": "Fictional: 14 reopened issues versus 8 previously; cohort comparability unknown."
+      }
+    },
+    {
+      "id": "example-3",
+      "label": "Partial coverage",
+      "values": {
+        "repo": "example-org/example-worker",
+        "period": "2026-09-01 through 2026-09-14",
+        "prStats": "Fictional: 12 PRs, but four lack start timestamps.",
+        "defectStats": "Defect linkage incomplete; do not report a complete productivity measure."
+      }
+    }
+  ],
+  "agent-audit": [
+    {
+      "id": "example-1",
+      "label": "Useful output",
+      "values": {
+        "agentStats": "Fictional: 20 sessions; 2M input tokens; 0.4M output tokens.",
+        "sessionsSummary": "15 sessions ended in reviewed changes; five were exploratory.",
+        "outcomes": "12 merged changes with recorded checks; no causal productivity claim.",
+        "budget": "100 USD planning budget; use supplied vendor prices for actual cost."
+      }
+    },
+    {
+      "id": "example-2",
+      "label": "Repeated retries",
+      "values": {
+        "agentStats": "Fictional: 12 sessions; 1.8M input tokens; 0.6M output tokens.",
+        "sessionsSummary": "Eight sessions retried the same failing task; failure cause unresolved.",
+        "outcomes": "Three accepted changes; examine retry traces before labeling spend avoidable.",
+        "budget": "75 USD planning budget; cache discounts and fees not supplied."
+      }
+    },
+    {
+      "id": "example-3",
+      "label": "Exploration session",
+      "values": {
+        "agentStats": "Fictional: six research sessions; 0.5M input tokens; 0.1M output tokens.",
+        "sessionsSummary": "No code merge expected; the intended deliverable was a design review.",
+        "outcomes": "Two accepted review documents; merged-output absence does not prove waste.",
+        "budget": "30 USD planning budget; costs require dated input/output prices."
+      }
+    }
+  ],
+  "roi-compare": [
+    {
+      "id": "example-1",
+      "label": "Cost comparison",
+      "values": {
+        "aiSpend": "Example 200 USD in supplied token costs",
+        "engineerHours": "Example 40 tracked hours; fully loaded hourly rate not supplied.",
+        "deliveryValue": "Example 12 accepted deliverables; monetary value not independently established.",
+        "trend": "Compare costs and observed output; do not invent financial ROI."
+      }
+    },
+    {
+      "id": "example-2",
+      "label": "Missing value basis",
+      "values": {
+        "aiSpend": "Example 500 USD invoice total; fee categories not separated.",
+        "engineerHours": "Time tracking unavailable",
+        "deliveryValue": "20 generated drafts; acceptance and business value unknown.",
+        "trend": "Insufficient evidence for return-on-investment calculation."
+      }
+    },
+    {
+      "id": "example-3",
+      "label": "Mixed delivery",
+      "values": {
+        "aiSpend": "Example 350 USD in vendor charges across two periods",
+        "engineerHours": "Example 60 hours current versus 65 prior; task mix differs.",
+        "deliveryValue": "Eight accepted changes and two rolled back changes.",
+        "trend": "Report measured differences and confounders; no causal savings claim."
+      }
+    }
+  ]
+}

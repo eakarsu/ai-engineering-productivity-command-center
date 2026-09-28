@@ -1,0 +1,546 @@
+{
+  "Repository": {
+    "name": "Repository",
+    "fields": [
+      {
+        "name": "name",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "org",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "language",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "contributors",
+        "kind": "number",
+        "required": true,
+        "integer": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "defaultBranch",
+        "kind": "string",
+        "required": true
+      }
+    ]
+  },
+  "PullRequest": {
+    "name": "PullRequest",
+    "fields": [
+      {
+        "name": "number",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "author",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "title",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "commentsCount",
+        "kind": "number",
+        "required": true,
+        "integer": true,
+        "min": 0
+      },
+      {
+        "name": "cycleHours",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "repoId",
+        "kind": "string",
+        "required": false,
+        "relation": "Repository"
+      }
+    ],
+    "parent": {
+      "field": "repoId",
+      "entity": "Repository"
+    }
+  },
+  "ReviewCycle": {
+    "name": "ReviewCycle",
+    "fields": [
+      {
+        "name": "prRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "reviewer",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "round",
+        "kind": "number",
+        "required": true,
+        "integer": true
+      },
+      {
+        "name": "hoursToReview",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "outcome",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "reviewedAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "repoId",
+        "kind": "string",
+        "required": false,
+        "relation": "Repository"
+      }
+    ],
+    "parent": {
+      "field": "repoId",
+      "entity": "Repository"
+    }
+  },
+  "DefectRecord": {
+    "name": "DefectRecord",
+    "fields": [
+      {
+        "name": "key",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "severity",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "origin",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "fixHours",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "closedAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "repoId",
+        "kind": "string",
+        "required": false,
+        "relation": "Repository"
+      }
+    ],
+    "parent": {
+      "field": "repoId",
+      "entity": "Repository"
+    }
+  },
+  "AgentSession": {
+    "name": "AgentSession",
+    "fields": [
+      {
+        "name": "agent",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "engineer",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "task",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "tokensUsed",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "cost",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "repoId",
+        "kind": "string",
+        "required": false,
+        "relation": "Repository"
+      }
+    ],
+    "parent": {
+      "field": "repoId",
+      "entity": "Repository"
+    }
+  },
+  "TokenUsage": {
+    "name": "TokenUsage",
+    "fields": [
+      {
+        "name": "model",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "workflow",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "inputTokens",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "outputTokens",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "costUsd",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "periodStart",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "repoId",
+        "kind": "string",
+        "required": false,
+        "relation": "Repository"
+      }
+    ],
+    "parent": {
+      "field": "repoId",
+      "entity": "Repository"
+    }
+  },
+  "CycleTimeMetric": {
+    "name": "CycleTimeMetric",
+    "fields": [
+      {
+        "name": "period",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "stage",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "medianHours",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "p90Hours",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "trend",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "repoId",
+        "kind": "string",
+        "required": false,
+        "relation": "Repository"
+      }
+    ],
+    "parent": {
+      "field": "repoId",
+      "entity": "Repository"
+    }
+  },
+  "SpendReport": {
+    "name": "SpendReport",
+    "fields": [
+      {
+        "name": "period",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "aiSpend",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "engineerHoursCost",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "valueShipped",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "generatedBy",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "repoId",
+        "kind": "string",
+        "required": false,
+        "relation": "Repository"
+      }
+    ],
+    "parent": {
+      "field": "repoId",
+      "entity": "Repository"
+    }
+  },
+  "AgentAnomaly": {
+    "name": "AgentAnomaly",
+    "fields": [
+      {
+        "name": "pattern",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "detection",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "severity",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "wastedCost",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "engineer",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "repoId",
+        "kind": "string",
+        "required": false,
+        "relation": "Repository"
+      }
+    ],
+    "parent": {
+      "field": "repoId",
+      "entity": "Repository"
+    }
+  },
+  "EngineerProfile": {
+    "name": "EngineerProfile",
+    "fields": [
+      {
+        "name": "name",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "team",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "level",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "aiSpend30d",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "prsMerged30d",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "repoId",
+        "kind": "string",
+        "required": false,
+        "relation": "Repository"
+      }
+    ],
+    "parent": {
+      "field": "repoId",
+      "entity": "Repository"
+    }
+  },
+  "QualityGate": {
+    "name": "QualityGate",
+    "fields": [
+      {
+        "name": "name",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "metric",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "threshold",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "result",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "evaluatedAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "repoId",
+        "kind": "string",
+        "required": false,
+        "relation": "Repository"
+      }
+    ],
+    "parent": {
+      "field": "repoId",
+      "entity": "Repository"
+    }
+  },
+  "SpendAlert": {
+    "name": "SpendAlert",
+    "fields": [
+      {
+        "name": "scope",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "message",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "amountUsd",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "severity",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "raisedAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "repoId",
+        "kind": "string",
+        "required": false,
+        "relation": "Repository"
+      }
+    ],
+    "parent": {
+      "field": "repoId",
+      "entity": "Repository"
+    }
+  }
+}
